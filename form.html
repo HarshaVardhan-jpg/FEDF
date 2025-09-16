@@ -1,67 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Contact Form</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #eef2f3;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-
-    form {
-      background: white;
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      width: 300px;
-    }
-
-    input {
-      padding: 10px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    button {
-      padding: 10px;
-      font-size: 16px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    button.clicked {
-      background-color: green;
-    }
-
-    h2 {
-      text-align: center;
-      color: #333;
-    }
-  </style>
-</head>
-<body>
-
-  <form onsubmit="return false">
-    <h2>Contact Form</h2>
-    <input type="text" placeholder="Your Name" required>
-    <input type="email" placeholder="Your Email" required>
-    <input type="text" placeholder="Subject" required>
-    <textarea placeholder="Your Message" required></textarea>
-    <button type="button" onclick="this.classList.add('clicked')">Submit</button>
-  </form>
-
-</body>
-</html>
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+  <meta charset="UTF-8"> 
+  <title>Form Validation with JS DOM</title> 
+  <link rel="stylesheet" href="form.css"> 
+</head> 
+<body> 
+  <form id="myForm" novalidate> 
+    <h2>Registration Form</h2> 
+     
+    <div class="form-group"> 
+      <label for="fullname">Full Name</label> 
+      <input type="text" id="fullname" required> 
+      <div class="error" id="fullnameError"></div> 
+    </div> 
+ 
+    <div class="form-group"> 
+      <label for="email">Email</label> 
+      <input type="email" id="email" required> 
+      <div class="error" id="emailError"></div> 
+    </div> 
+ 
+    <div class="form-group"> 
+      <label for="password">Password</label> 
+      <input type="password" id="password" required> 
+      <div class="error" id="passwordError"></div> 
+    </div> 
+ 
+    <div class="form-group"> 
+      <label for="phone">Phone Number</label> 
+      <input type="tel" id="phone" pattern="[0-9]{10}" required> 
+      <div class="error" id="phoneError"></div> 
+    </div> 
+ 
+    <button type="submit">Submit</button> 
+    <div class="success" id="successMessage"></div> 
+  </form> 
+  <script src="form.js"></script> 
+</body> 
+</html> 
