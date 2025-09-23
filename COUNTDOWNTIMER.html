@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conference Countdown Timer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+      background: #f4f4f9;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    #countdown {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .progress-container {
+      width: 100%;
+      background-color: #ddd;
+      border-radius: 20px;
+      overflow: hidden;
+      height: 30px;
+    }
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background-color: #4caf50;
+      text-align: center;
+      line-height: 30px;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Conference Countdown</h1>
+  <div id="countdown"></div>
+
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar">0%</div>
+  </div>
+
+  <script>
+    // Set conference start time (UTC for international support)
+    const eventDate = new Date("2025-12-31T15:00:00Z").getTime(); 
+
+    const totalDuration = eventDate - Date.now();
+
+    const countdown = document.getElementById("countdown");
+    const progressBar = document.getElementById("progressBar");
+
+    const interval = setInterval(() => {
+      const now = Date.now();
+      const distance = eventDate - now;
+
+      if (distance <= 0) {
+        clearInterval(interval);
+        countdown.innerHTML = "🎉 Conference Started!";
+        progressBar.style.width = "100%";
+        progressBar.innerHTML = "100%";
+        return;
+      }
+
+      // Time calculations
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+      // Progress bar update
+      const progress = ((totalDuration - distance) / totalDuration) * 100;
+      progressBar.style.width = progress.toFixed(2) + "%";
+      progressBar.innerHTML = progress.toFixed(0) + "%";
+    }, 1000);
+  </script>
+
+</body>
+</html>
